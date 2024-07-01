@@ -133,3 +133,15 @@ class LinkedList:
         if self.head is None:
             self.end = None
         return data
+
+
+my_linked_list = LinkedList()
+my_linked_list.insert_at_head('data_1')
+my_linked_list.insert_at_head('data_2')
+my_linked_list.insert_at_head('data_3')
+my_linked_list.insert_at_head('data_4')
+
+my_linked_list.is_empty()
+my_linked_list.is_full()
+my_linked_list.dequeue()
+my_linked_list.print_ll()
