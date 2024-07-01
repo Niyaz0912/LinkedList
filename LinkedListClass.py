@@ -109,39 +109,4 @@ class LinkedList:
             current_node_position += 1
         return "Данные не обнаружены"
 
-    def is_empty(self):
-        """Функция проверяет очередь на пустоту"""
-        return self.head is None
 
-    def is_full(self):
-        """Функция проверяет, полна ли очередь"""
-        current_size = 1
-        current_node = self.head
-        while current_node:
-            current_size += 1
-            current_node = current_node.next_node
-            if current_size >= self.max_size:
-                return True
-        return False
-
-    def dequeue(self):
-        """Функция удаляет элемент из очереди"""
-        if self.is_empty():
-            return "Очередь пуста"
-        data = self.head.data
-        self.head = self.head.next_node
-        if self.head is None:
-            self.end = None
-        return data
-
-
-my_linked_list = LinkedList()
-my_linked_list.insert_at_head('data_1')
-my_linked_list.insert_at_head('data_2')
-my_linked_list.insert_at_head('data_3')
-my_linked_list.insert_at_head('data_4')
-
-my_linked_list.is_empty()
-my_linked_list.is_full()
-my_linked_list.dequeue()
-my_linked_list.print_ll()
