@@ -110,3 +110,29 @@ class LinkedList:
         return "Данные не обнаружены"
 
 
+# Создаем экземпляр класса LinkedList
+linked_list = LinkedList()
+
+# Добавляем узлы в начало списка
+print(linked_list.insert_at_head(1))  # Узел с данными 1 добавлен в начало списка
+print(linked_list.insert_at_head(2))  # Узел с данными 2 добавлен в начало списка
+print(linked_list.insert_at_head(3))  # Узел с данными 3 добавлен в начало списка
+
+# Добавляем узлы в конец списка
+print(linked_list.insert_at_end(4))   # Узел с данными 4 добавлен в конец списка
+print(linked_list.insert_at_end(5))   # Узел с данными 5 добавлен в конец списка
+
+# Выводим данные списка
+print(linked_list.print_ll())
+
+# Удаляем узел по позиции
+print(linked_list.remove_node_position(3))  # Удален узел с данными 1 позиции 3
+
+# Добавляем узел на заданную позицию
+print(linked_list.insert_at_position(6, 3))  # Узел с данными 6 добавлен на позицию 3
+
+# Изменяем данные в узле
+print(linked_list.change_data(5, 7))  # Заменены данные в узле № 5
+
+# Выводим данные списка
+print(linked_list.print_ll())
