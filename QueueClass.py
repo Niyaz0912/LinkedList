@@ -1,86 +1,69 @@
-class CharQueue:
-    """
-    Реализация очереди для работы с символьными значениями.
+class Queue:
 
-    Атрибуты:
-    max_size (int): Максимальный размер очереди.
-    queue (list): Список, хранящий элементы очереди.
-    front (int): Индекс первого элемента в очереди.
-    rear (int): Индекс последнего элемента в очереди.
-    count (int): Количество элементов в очереди.
-    """
+    def __init__(self, size):
 
-    def __init__(self, max_size):
-        """
-        Инициализирует очередь с заданным максимальным размером.
-
-        Args:
-        max_size (int): Максимальный размер очереди.
-        """
-        self.max_size = max_size
-        self.queue = [None] * max_size
-        self.front = 0
-        self.rear = -1
-        self.count = 0
+        self.size = size
+        self.queue = []
 
     def is_empty(self):
-        """
-        Проверяет, является ли очередь пустой.
 
-        Returns:
-        bool: True, если очередь пуста, False в противном случае.
-        """
-        return self.count == 0
+        return len(self.queue) == 0
 
     def is_full(self):
-        """
-        Проверяет, является ли очередь заполненной.
 
-        Returns:
-        bool: True, если очередь заполнена, False в противном случае.
-        """
-        return self.count == self.max_size
+        return len(self.queue) == self.size
 
-    def enqueue(self, item):
-        """
-        Добавляет элемент в конец очереди.
+    def enqueue(self, char):
 
-        Args:
-        item (str): Элемент, который нужно добавить в очередь.
-
-        Raises:
-        ValueError: Если очередь заполнена.
-        """
-        if self.is_full():
-            raise ValueError("Очередь заполнена")
-        self.rear = (self.rear + 1) % self.max_size
-        self.queue[self.rear] = item
-        self.count += 1
+        if not self.is_full():
+            self.queue.append(char)
+        else:
+            print("Очередь заполнена!")
 
     def dequeue(self):
-        """
-        Удаляет и возвращает элемент из начала очереди.
 
-        Returns:
-        str: Элемент, который был удален из очереди.
-
-        Raises:
-        ValueError: Если очередь пуста.
-        """
-        if self.is_empty():
-            raise ValueError("Очередь пуста")
-        item = self.queue[self.front]
-        self.front = (self.front + 1) % self.max_size
-        self.count -= 1
-        return item
+        if not self.is_empty():
+            return self.queue.pop(0)
+        else:
+            print("Очередь пуста!")
+            return None
 
     def show(self):
-        """
-        Отображает все элементы очереди.
-        """
-        if self.is_empty():
-            print("Очередь пуста")
+
+        print("Содержимое очереди:", self.queue)
+
+
+def display_menu():
+
+    print("Меню:")
+    print("1. Добавить элемент в очередь")
+    print("2. Удалить элемент из очереди")
+    print("3. Проверить, пуста ли очередь")
+    print("4. Проверить, заполнена ли очередь")
+    print("5. Показать содержимое очереди")
+    print("6. Выход")
+
+
+if __name__ == '__main__':
+    q = Queue(5)
+    while True:
+        display_menu()
+        choice = input("Введите ваш выбор (1-6): ")
+
+        if choice == '1':
+            char = input("Введите символ для добавления в очередь: ")
+            q.enqueue(char)
+        elif choice == '2':
+            removed = q.dequeue()
+            if removed:
+                print(f'Удален: {removed}')
+        elif choice == '3':
+            print("Очередь пуста?", q.is_empty())
+        elif choice == '4':
+            print("Очередь заполнена?", q.is_full())
+        elif choice == '5':
+            q.show()
+        elif choice == '6':
+            break
         else:
-            print("Элементы очереди:")
-            for i in range(self.front, self.rear + 1):
-                print(self.queue[i % self.max_size])
+            print("Неверный выбор! Пожалуйста, выберите снова!")
